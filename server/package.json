@@ -1,0 +1,19 @@
+{
+  "name": "grand-chess-realms-server",
+  "version": "1.0.0",
+  "description": "Backend server for Grand Chess Realms RPG",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": ["rpg", "chess", "ai", "llm"],
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "node-fetch": "^2.7.0",
+    "sqlite3": "^5.1.7"
+  }
+}

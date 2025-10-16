@@ -1,0 +1,23 @@
+{
+  "lmStudio": {
+    "apiUrl": "http://127.0.0.1:1234",
+    "defaultModel": "local-model",
+    "temperature": 0.8,
+    "maxTokens": 400,
+    "timeout": 30000
+  },
+  "server": {
+    "port": 3001,
+    "cors": {
+      "origin": ["http://localhost:5173", "http://localhost:3001"]
+    }
+  },
+  "database": {
+    "path": "./db/grand_chess_realms.db"
+  },
+  "chess": {
+    "defaultElo": 1500,
+    "minElo": 800,
+    "maxElo": 2800
+  }
+}
