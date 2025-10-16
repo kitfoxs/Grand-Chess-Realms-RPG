@@ -2,17 +2,26 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+const fs = require('fs');
 const { initDatabase } = require('./db/database');
 
 const npcRoutes = require('./routes/npc');
 const memoryRoutes = require('./routes/memory');
 const gameRoutes = require('./routes/game');
 
+// Load configuration
+const configPath = path.join(__dirname, 'config.json');
+const config = fs.existsSync(configPath) 
+  ? JSON.parse(fs.readFileSync(configPath, 'utf8'))
+  : { server: { port: 3001, cors: { origin: '*' } } };
+
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || config.server.port;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: config.server.cors.origin
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

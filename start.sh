@@ -36,20 +36,48 @@ echo ""
 echo "Press Ctrl+C to stop both servers"
 echo ""
 
+# Function to cleanup processes on exit
+cleanup() {
+    echo ""
+    echo "🛑 Shutting down servers..."
+    [ ! -z "$SERVER_PID" ] && kill $SERVER_PID 2>/dev/null
+    [ ! -z "$CLIENT_PID" ] && kill $CLIENT_PID 2>/dev/null
+    exit 0
+}
+
+# Trap Ctrl+C and other termination signals
+trap cleanup INT TERM
+
+# Get absolute paths
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SERVER_DIR="$SCRIPT_DIR/server"
+CLIENT_DIR="$SCRIPT_DIR/client"
+
 # Start backend in background
-cd server
-node index.js &
-SERVER_PID=$!
-cd ..
+if [ -d "$SERVER_DIR" ]; then
+    cd "$SERVER_DIR" || { echo "❌ Failed to enter server directory"; exit 1; }
+    node index.js &
+    SERVER_PID=$!
+    cd "$SCRIPT_DIR" || exit 1
+else
+    echo "❌ Server directory not found"
+    exit 1
+fi
 
 # Wait a moment for server to start
 sleep 2
 
 # Start frontend
-cd client
-npm run dev &
-CLIENT_PID=$!
-cd ..
+if [ -d "$CLIENT_DIR" ]; then
+    cd "$CLIENT_DIR" || { echo "❌ Failed to enter client directory"; cleanup; }
+    npm run dev &
+    CLIENT_PID=$!
+    cd "$SCRIPT_DIR" || exit 1
+else
+    echo "❌ Client directory not found"
+    cleanup
+fi
 
 # Wait for both processes
-wait $SERVER_PID $CLIENT_PID
+wait $SERVER_PID
+wait $CLIENT_PID

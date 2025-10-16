@@ -9,7 +9,7 @@
   "server": {
     "port": 3001,
     "cors": {
-      "origin": "*"
+      "origin": ["http://localhost:5173", "http://localhost:3001"]
     }
   },
   "database": {
