@@ -119,14 +119,45 @@ Comprehensive worldbuilding organized into:
 
 ---
 
+## 🎮 Play Modes
+
+### 🌐 Web Application (NEW!)
+
+**Local Solo RPG App with AI-Powered NPCs**
+
+A desktop web application that runs entirely on your machine with:
+- Interactive chess board against AI opponents
+- NPC conversations powered by local LLM (via LM Studio)
+- Character creation and progression
+- Campaign journal and dice roller
+- Persistent memory - NPCs remember your interactions!
+
+**Quick Start:**
+```bash
+# Install dependencies and start
+./start.sh
+
+# Or manually:
+cd server && npm install && npm start
+cd client && npm install && npm run dev
+```
+
+📖 See [WEB_APP_README.md](WEB_APP_README.md) for detailed instructions  
+🔧 See [INSTALLATION.md](INSTALLATION.md) for setup guide
+
+### 📚 Tabletop Play (Traditional)
+
+Play with friends around a table with physical chess sets and dice.
+
 ## 🚀 Getting Started
 
 ### For Players New to Both Chess and RPGs
 
-1. **Start with the Player's Handbook** - Read Parts I-III for rules and character creation
-2. **Learn Basic Chess** - Use Part VI: Chess Fundamentals for Beginners
-3. **Play the Starter Adventure** - "Pieces in Play" (Part V) teaches both systems
-4. **Practice on Lichess** - Free tactical puzzles and lessons at [lichess.org](https://lichess.org)
+1. **Try the Web App** - Easiest way to start playing (see above)
+2. **Start with the Player's Handbook** - Read Parts I-III for rules and character creation
+3. **Learn Basic Chess** - Use Part VI: Chess Fundamentals for Beginners
+4. **Play the Starter Adventure** - "Pieces in Play" (Part V) teaches both systems
+5. **Practice on Lichess** - Free tactical puzzles and lessons at [lichess.org](https://lichess.org)
 
 ### For Experienced Chess Players New to RPGs
 
